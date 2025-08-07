@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Poetry / venv
+.venv/
+env/
+venv/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Логи
+*.log
+
+# Настоящие секреты
+.env
+*.pem
+
+*.csv
+*.db

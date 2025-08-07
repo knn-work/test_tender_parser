@@ -1,0 +1,24 @@
+[project]
+name = "test-tenders-parser"
+version = "0.1.0"
+description = "Мини-приложение на Python, которое: Загружает первые 100 тендеров, Извлекает ключевые показатели для каждого тендера, Сохраняет эти данные в SQLite или CSV.Имеет простой CLI-интерфейс."
+authors = [
+    {name = "Knn"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "beautifulsoup4 (>=4.13.4,<5.0.0)",
+    "fastapi[standart] (>=0.116.1,<0.117.0)",
+    "requests (>=2.32.4,<3.0.0)",
+    "uvicorn (>=0.35.0,<0.36.0)",
+    "sqlalchemy (>=2.0.42,<3.0.0)",
+    "dotenv (>=0.9.9,<0.10.0)",
+    "pydantic-settings (>=2.10.1,<3.0.0)",
+    "fake-useragent (>=2.2.0,<3.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

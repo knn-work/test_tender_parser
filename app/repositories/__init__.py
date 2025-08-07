@@ -1,0 +1,1 @@
+from app.repositories.tender_repository import TenderRepository
