@@ -14,7 +14,7 @@ class Config(BaseSettings):
     project_name: str
     project_host: str
     project_port: int
-
+    count_tender: int = 100
 
     model_config = SettingsConfigDict(env_nested_delimiter="__")
 

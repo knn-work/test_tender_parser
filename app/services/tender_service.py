@@ -1,4 +1,5 @@
 from typing import Optional
+
 from sqlalchemy.orm import Session
 
 from app.api.schemas.tender import TenderCreate, TenderRead

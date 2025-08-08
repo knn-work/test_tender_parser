@@ -1,10 +1,12 @@
 [project]
-name = "test-tenders-parser"
+name = "test_tenders_parser"
 version = "0.1.0"
 description = "Мини-приложение на Python, которое: Загружает первые 100 тендеров, Извлекает ключевые показатели для каждого тендера, Сохраняет эти данные в SQLite или CSV.Имеет простой CLI-интерфейс."
 authors = [
     {name = "Knn"}
 ]
+
+package-mode = false
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [

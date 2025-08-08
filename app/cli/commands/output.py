@@ -1,27 +1,44 @@
 import csv
 import os
-from typing import List
 
 from app.cli.base.command_abc import Command
-from app.db.models import Tender
 
 
 class Output(Command):
-    """Сохраняет данные Tender в файл с расширением .csv"""
+    """Команда CLI для сохранения данных Tender в CSV-файл."""
 
     def __init__(self):
+        """Инициализация команды."""
         self.command_name = "output"
 
     def default(self, data=None):
-        print(*[x.__dict__ for x in data], sep ="\n")
+        """Выводит данные в консоль.
+
+        Args:
+            data: Список объектов Tender или другие данные для отображения.
+        """
+        print(*[x.__dict__ for x in data], sep="\n")
         return
 
-
     @property
-    def name(self) -> str:
+    def name(self):
+        """Возвращает имя команды.
+
+        Returns:
+            str: Имя команды.
+        """
         return self.command_name
 
-    def execute(self, file_name: str, data: List[Tender] = None):
+    def execute(self, file_name, data=None):
+        """Сохраняет список объектов Tender в CSV-файл.
+
+        Args:
+            file_name: Имя выходного файла с расширением .csv.
+            data: Список объектов Tender для записи.
+
+        Returns:
+            list: Те же данные, что были переданы на вход.
+        """
         if not file_name.endswith('.csv'):
             print("Ошибка: файл должен иметь расширение .csv")
             return data
@@ -49,5 +66,5 @@ class Output(Command):
                     tender.end_time.isoformat() if tender.end_time else "",
                 ])
 
-        print(f"Записано {file_name}")
+        print(f"[✓] Записано {file_name}")
         return data

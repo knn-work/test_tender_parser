@@ -28,12 +28,14 @@ class RosTenderParser:
             Список полных URL-адресов тендеров.
         """
         url = SEARCH_URL_TEMPLATE.format(page_number)
-        print(f"Получение ссылок из {url}")
+        print(f"Получение ссылок из {url}",end = " - ")
         resp = requests.get(url, headers={"User-Agent": self.ua.random})
         soup = BeautifulSoup(resp.text, "html.parser")
         anchors = soup.find_all("a", class_="tender-info__link")
-        print(f"\tПолучено {len(anchors)} ссылок")
-        return [BASE_URL + a["href"] for a in anchors if a.get("href")]
+        lincs = [BASE_URL + a["href"] for a in anchors if a.get("href")]
+        print(f"Получено {len(lincs)} ссылок")
+        # print(lincs)
+        return lincs
 
     def parse_tender_page(self, url: str) -> Optional[TenderCreate]:
         """

@@ -46,8 +46,11 @@ class TenderParserService:
 
         # 2. Парсим каждую ссылку в TenderCreate
         tenders: List[TenderCreate] = []
-        for url in links:
+
+        print(f"\nПарсинг тендеров:")
+        for i, url in enumerate(links):
             tender = self.tender_parser.parse_tender_page(url)
+            print(f"   [{i+1}/{len(links)}] - Тендер №{tender.number}")
             time.sleep(random.uniform(1.2, 3.4))
             if tender:
                 tenders.append(tender)
@@ -58,14 +61,14 @@ class TenderParserService:
         self.tender_service.delete_not_in(db_session, numbers_from_site)
 
         # 4. Добавляем новые тендеры (только если их ещё нет)
-        print(f"[*] Добавление {len(tenders)} тендеров (только новых)...")
+        print(f"[*] Сохранение {len(tenders)} тендеров в бд(только новых)...")
         for tender_schema in tenders:
             existing = self.tender_service.get_one_or_none(db_session, tender_schema.number)
             if not existing:
                 created = self.tender_service.create(db_session, tender_schema)
-                print(f"[+] Добавлен тендер: {created.number}")
+                print(f"   [+] Добавлен тендер в бд: {created.number}")
             else:
-                print(f"[=] Уже существует: {tender_schema.number}")
+                print(f"   [=] Уже существует в бд: {tender_schema.number}")
 
         print("[✓] Синхронизация завершена.")
         return tenders

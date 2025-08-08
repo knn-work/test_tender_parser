@@ -1,8 +1,8 @@
 import argparse
 
-from app.cli.base.command_abc import Command
 from app.cli.commands import *
 from app.core import app_config
+from app.db import Base, engine
 
 
 def main() -> None:
@@ -16,6 +16,9 @@ def main() -> None:
         prog=app_config.project_name,
         description='CLI-инструмент / ' + app_config.description,
     )
+
+    #  Создать таблицы если их нет
+    Base.metadata.create_all(bind=engine)
 
     commands: list = [
         GetNew(),
